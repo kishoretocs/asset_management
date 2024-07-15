@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="dashboard">
+      <h1>Dashboard</h1>
+      <div id="sales">Sales: <span id="sales_count"></span></div>
+      <div id="revenue">Revenue: <span id="total_revenue"></span></div>
+      <div id="customers">Customers: <span id="customer_count"></span></div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        fetch("/dashboard/")
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("sales_count").textContent =
+              data.sales_count;
+            document.getElementById("total_revenue").textContent =
+              data.total_revenue;
+            document.getElementById("customer_count").textContent =
+              data.customer_count;
+          })
+          .catch((error) => console.error("Error:", error));
+      });
+    </script>
+  </body>
+</html>

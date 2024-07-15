@@ -1,0 +1,15 @@
+<!-- templates/orders/product_orders.html -->
+<h2>Orders for {{ product.name }}</h2>
+
+<ul>
+  {% for order in orders %}
+  <li>
+    {{ order.customer.customer.username }} - {{ order.order_quantity }} units -
+    {% if order.accepted %} Accepted {% else %}
+    <a href="{% url 'order-accept' order.pk %}">Accept Order</a>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+
+<a href="{% url 'user-products' %}">Back to My Products</a>

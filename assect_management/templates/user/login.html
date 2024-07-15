@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="row my-4">
+      <div class="col-md-6 offset-md-3">
+        <div class="border p-3 bg-white">
+          <h4>Login Page</h4>
+          <hr />
+          <form method="POST">
+            {% csrf_token %} {{ form }}
+            <input class="btn btn-success" type="submit" value="Login" />
+          </form>
+          <p class="text-center text-gray-600 mt-4">
+            Don't have an account?
+            <a
+              class="text-blue-500 hover:underline"
+              href="{% url 'user-register' %}"
+              >Register</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

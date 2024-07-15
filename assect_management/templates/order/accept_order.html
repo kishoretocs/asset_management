@@ -1,0 +1,16 @@
+<!-- templates/orders/accept_order.html -->
+<h2>Accept Order for {{ order.product.name }}</h2>
+
+{% if error %}
+<p style="color: red">{{ error }}</p>
+{% endif %}
+
+<p>Customer: {{ order.customer.customer.username }}</p>
+<p>Order Quantity: {{ order.order_quantity }}</p>
+<p>Current Product Quantity: {{ order.product.quantity }}</p>
+
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">Accept Order</button>
+</form>
+<a href="{% url 'product-orders' order.product.pk %}">Cancel</a>

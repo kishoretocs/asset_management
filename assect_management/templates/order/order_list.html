@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Order List</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container mx-auto mt-8">
+      <h1 class="text-2xl font-bold mb-4">Order List</h1>
+      <a
+        href="{% url 'order-create' %}"
+        class="mb-4 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+        >Add New Order</a
+      >
+      <table class="min-w-full bg-white">
+        <thead>
+          <tr>
+            <th class="py-2">Product</th>
+            <th class="py-2">Quantity</th>
+            <th class="py-2">Total Price</th>
+            <th class="py-2">Order Date</th>
+            <th class="py-2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for order in orders %}
+          <tr>
+            <td class="border px-4 py-2">{{ order.product.name }}</td>
+            <td class="border px-4 py-2">{{ order.order_quantity }}</td>
+            <td class="border px-4 py-2">{{ order.total_price }}</td>
+            <td class="border px-4 py-2">{{ order.order_date }}</td>
+            <td class="border px-4 py-2">
+              <a
+                href="{% url 'order-edit' order.pk %}"
+                class="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-600"
+                >Edit</a
+              >
+              <a
+                href="{% url 'order-delete' order.pk %}"
+                class="bg-red-500 text-white py-1 px-3 rounded hover:bg-red-600"
+                >Delete</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

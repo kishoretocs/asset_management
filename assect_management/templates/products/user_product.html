@@ -1,0 +1,10 @@
+<!-- templates/products/user_products.html -->
+<h2>My Products</h2>
+
+<ul>
+  {% for product in products %}
+  <li>
+    <a href="{% url 'product-orders' product.pk %}">{{ product.name }}</a>
+  </li>
+  {% endfor %}
+</ul>
