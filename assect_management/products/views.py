@@ -14,7 +14,11 @@ def create_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)
         if form.is_valid():
-            form.save()
+            product = form.save(commit=False)
+            product.creator = Profile.objects.get(customer=request.user)  # Set the creator to the current user's profile
+            product.save()
+            return redirect('product-list')
+
             return redirect('product-list')
     else:
         form = ProductForm()
